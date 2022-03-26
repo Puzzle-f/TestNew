@@ -12,19 +12,20 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.geekbrains.tests.R
 import com.geekbrains.tests.view.details.DetailsActivity
 import junit.framework.Assert.assertEquals
-import junit.framework.TestCase.assertNotNull
+import junit.framework.Assert.assertNotNull
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 
-@RunWith(AndroidJUnit4::class)
-@Config(sdk = [Build.VERSION_CODES.P])
-class DetailsActivityTest {
 
-    lateinit var scenario: ActivityScenario<DetailsActivity>
-    lateinit var context: Context
+@RunWith(AndroidJUnit4::class)
+@Config(sdk = [Build.VERSION_CODES.O_MR1])
+class DetailActivityTest {
+
+    private lateinit var scenario: ActivityScenario<DetailsActivity>
+    private lateinit var context: Context
 
     @Before
     fun setup() {
@@ -111,6 +112,7 @@ class DetailsActivityTest {
     fun activityCreateIntent_NotNull() {
         val intent = DetailsActivity.getIntent(context, 0)
         assertNotNull(intent)
+        assertEquals(intent.extras, 0)
     }
 
     @Test
@@ -125,12 +127,18 @@ class DetailsActivityTest {
         val count = 42
         val intent = DetailsActivity.getIntent(context, count)
         val bundle = intent.extras
-        assertEquals(count, bundle?.getInt(DetailsActivity.TOTAL_COUNT_EXTRA,
-            0))
+        assertEquals(
+            count, bundle?.getInt(
+                DetailsActivity.TOTAL_COUNT_EXTRA,
+                0
+            )
+        )
     }
 
     @After
     fun close() {
         scenario.close()
     }
+
+
 }
