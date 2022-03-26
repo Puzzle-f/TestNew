@@ -7,21 +7,14 @@ import com.geekbrains.tests.view.ViewContract
 import com.geekbrains.tests.view.search.ViewSearchContract
 import retrofit2.Response
 
-/**
- * В архитектуре MVP все запросы на получение данных адресуются в Репозиторий.
- * Запросы могут проходить через Interactor или UseCase, использовать источники
- * данных (DataSource), но суть от этого не меняется.
- * Непосредственно Презентер отвечает за управление потоками запросов и ответов,
- * выступая в роли регулировщика движения на перекрестке.
- */
-
 internal class SearchPresenter internal constructor(
-    private val viewContract: ViewContract,
+    private val viewContract: ViewSearchContract,
     private val repository: GitHubRepository
 ) : PresenterSearchContract, GitHubRepositoryCallback {
 
 
-    private var viewSearchContract: ViewSearchContract? = null
+//    private
+    var viewSearchContract: ViewSearchContract? = null
 
     override fun searchGitHub(searchQuery: String) {
         viewSearchContract?.displayLoading(true)
@@ -29,7 +22,7 @@ internal class SearchPresenter internal constructor(
     }
 
     override fun onAttach() {
-        viewSearchContract = viewContract as ViewSearchContract
+        viewSearchContract = viewContract
     }
 
     override fun onDetach() {
