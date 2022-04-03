@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.geekbrains.tests.R
+import com.geekbrains.tests.model.SearchResult
 import com.geekbrains.tests.presenter.details.DetailsPresenter
 import com.geekbrains.tests.presenter.details.PresenterDetailsContract
 import kotlinx.android.synthetic.main.activity_details.*
@@ -31,6 +32,22 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
 
     override fun setCount(count: Int) {
         setCountText(count)
+    }
+
+    override fun displaySearchResults(searchResults: List<SearchResult>, totalCount: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun displayError() {
+        TODO("Not yet implemented")
+    }
+
+    override fun displayError(error: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun displayLoading(show: Boolean) {
+        TODO("Not yet implemented")
     }
 
     private fun setCountText(count: Int) {
