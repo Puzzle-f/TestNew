@@ -1,6 +1,5 @@
 package com.geekbrains.tests.presenter.details
 
-import android.util.Log
 import com.geekbrains.tests.view.ViewContract
 import com.geekbrains.tests.view.details.ViewDetailsContract
 

@@ -4,12 +4,12 @@ import com.geekbrains.tests.model.SearchResult
 import com.geekbrains.tests.view.ViewContract
 
 internal interface ViewSearchContract : ViewContract {
-    fun displaySearchResults(
+    override fun displaySearchResults(
         searchResults: List<SearchResult>,
         totalCount: Int
     )
 
-    fun displayError()
-    fun displayError(error: String)
-    fun displayLoading(show: Boolean)
+    override fun displayError()
+    override fun displayError(error: String)
+    override fun displayLoading(show: Boolean)
 }
