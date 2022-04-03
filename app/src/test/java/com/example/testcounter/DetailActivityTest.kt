@@ -8,9 +8,14 @@ import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewAssertion
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.geekbrains.tests.R
 import com.geekbrains.tests.view.details.DetailsActivity
+import com.geekbrains.tests.view.details.DetailsActivity.Companion.TOTAL_COUNT_EXTRA
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
 import org.junit.After
@@ -56,11 +61,8 @@ class DetailActivityTest {
 
     @Test
     fun activityTextView_HasText() {
-        scenario.onActivity {
-            val totalCountTextView =
-                it.findViewById<TextView>(R.id.totalCountTextView)
-            assertEquals("Number of results: 0", totalCountTextView.text)
-        }
+        val assertion: ViewAssertion = matches(withText("Number of results: 0"))
+        onView(withId(R.id.totalCountTextView)).check(assertion)
     }
 
     @Test
@@ -106,13 +108,6 @@ class DetailActivityTest {
             decrementButton.performClick()
             assertEquals("Number of results: -1", totalCountTextView.text)
         }
-    }
-
-    @Test
-    fun activityCreateIntent_NotNull() {
-        val intent = DetailsActivity.getIntent(context, 0)
-        assertNotNull(intent)
-        assertEquals(intent.extras, 0)
     }
 
     @Test

@@ -6,9 +6,9 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewAssertion
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.geekbrains.tests.R
 import com.geekbrains.tests.view.details.DetailsActivity
@@ -59,6 +59,24 @@ class DetailsActivityEspressoTest {
         scenario.close()
     }
 
+    @Test
+    fun activityButtons_AreEffectiveVisible() {
+        onView(withId(R.id.incrementButton)).check(matches(withEffectiveVisibility(Visibility
+            .VISIBLE)))
+        onView(withId(R.id.decrementButton)).check(matches(withEffectiveVisibility(Visibility
+            .VISIBLE)))
+    }
+
+    @Test
+    fun activityButtonIncrement_IsWorking() {
+        onView(withId(R.id.incrementButton)).perform(click())
+        onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 1")))
+    }
+    @Test
+    fun activityButtonDecrement_IsWorking() {
+        onView(withId(R.id.decrementButton)).perform(click())
+        onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: -1")))
+    }
 
 
 
