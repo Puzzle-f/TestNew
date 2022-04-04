@@ -38,15 +38,15 @@ android {
 
         flavorDimensions "default"
         productFlavors {
-//            fake {
-//                applicationIdSuffix ".fake"
-//                versionNameSuffix "-fake"
-//                buildConfigField "String", "TYPE", '"FAKE"'
-//            }
+            fake {
+                applicationIdSuffix ".fake"
+                versionNameSuffix "-fake"
+                buildConfigField "boolean", "IS_FAKE", "true"
+            }
             real {
                 applicationIdSuffix ".real"
                 versionNameSuffix "-real"
-                buildConfigField "String", "TYPE", '"REAL"'
+                buildConfigField "boolean", "IS_FAKE", "false"
             }
         }
 
