@@ -1,15 +1,11 @@
 package com.example.testcounter
 
 import com.geekbrains.tests.presenter.details.DetailsPresenter
-import com.geekbrains.tests.presenter.details.PresenterDetailsContract
 import com.geekbrains.tests.view.ViewContract
-import com.geekbrains.tests.view.details.ViewDetailsContract
-import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 class DetailsPresenterTest {

@@ -29,10 +29,6 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
         incrementButton.setOnClickListener { presenter.onIncrement() }
     }
 
-    override fun setCount(count: Int) {
-        setCountText(count)
-    }
-
     private fun setCountText(count: Int) {
         totalCountTextView.text =
             String.format(Locale.getDefault(), getString(R.string.results_count), count)
@@ -53,4 +49,9 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
         super.onDestroy()
         presenter.onDetach()
     }
+
+    override fun setCount(count: Int) {
+        setCountText(count)
+    }
+
 }

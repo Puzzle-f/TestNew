@@ -1,6 +1,5 @@
 package com.geekbrains.tests.presenter.details
 
-import android.util.Log
 import com.geekbrains.tests.view.ViewContract
 import com.geekbrains.tests.view.details.ViewDetailsContract
 
@@ -10,8 +9,6 @@ class DetailsPresenter internal constructor(
     var count: Int = 0
 ) : PresenterDetailsContract {
 
-
-//    private
     var viewDetailsContract: ViewDetailsContract? = null
 
     override fun setCounter(count: Int) {
