@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
     }
 
     private fun createRepository(): RepositoryContract {
-        return if (BuildConfig.TYPE == FAKE) {
+        return if (BuildConfig.IS_FAKE) {
             FakeGitHubRepository()
         } else {
             GitHubRepository(createRetrofit().create(GitHubApi::class.java))
@@ -145,5 +145,3 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         presenter.onDetach()
     }
 }
-
-const val FAKE = "FAKE"
