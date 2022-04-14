@@ -43,7 +43,7 @@ class MainActivityEspressoTest {
     fun progressBar_Visible() {
         onView(withId(R.id.searchEditText)).perform(click())
         onView(withId(R.id.searchEditText)).perform(replaceText("run"), closeSoftKeyboard())
-        onView(withId(R.id.searchEditText)).perform(pressImeActionButton())
+        onView(withId(R.id.search_button)).perform(click())
         onView(isRoot()).perform(delay(500))
         onView(withId(R.id.progressBar)).check(matches(isDisplayed()))
     }
@@ -51,13 +51,13 @@ class MainActivityEspressoTest {
     @Test
     fun activitySearch_IsWorking() {
         onView(withId(R.id.searchEditText)).perform(click())
-        onView(withId(R.id.searchEditText)).perform(replaceText("algol"), closeSoftKeyboard())
-        onView(withId(R.id.searchEditText)).perform(pressImeActionButton())
+        onView(withId(R.id.searchEditText)).perform(replaceText("mojombo"), closeSoftKeyboard())
+        onView(withId(R.id.search_button)).perform(click())
         if (BuildConfig.IS_FAKE) {
-            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 42")))
+            onView(withId(R.id.countProjects)).check(matches(withText("Number of results: 42")))
         } else {
             onView(isRoot()).perform(delay(4000))
-            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 2978")))
+            onView(withId(R.id.countProjects)).check(matches(withText("25")))
         }
     }
 

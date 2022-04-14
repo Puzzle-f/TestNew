@@ -1,5 +1,6 @@
 package com.geekbrains.tests.presenter.details
 
+import android.util.Log
 import com.geekbrains.tests.view.ViewContract
 import com.geekbrains.tests.view.details.ViewDetailsContract
 
@@ -18,11 +19,13 @@ class DetailsPresenter internal constructor(
     override fun onIncrement() {
         count++
         viewDetailsContract?.setCount(count)
+        Log.d("","count = $count")
     }
 
     override fun onDecrement() {
         count--
         viewDetailsContract?.setCount(count)
+        Log.d("","count = $count")
     }
 
     override fun onAttach() {

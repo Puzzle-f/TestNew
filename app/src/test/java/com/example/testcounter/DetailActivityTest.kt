@@ -11,11 +11,14 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.geekbrains.tests.R
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_MINUS_1
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_PLUS_1
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_ZERO
 import com.geekbrains.tests.view.details.DetailsActivity
-import com.geekbrains.tests.view.details.DetailsActivity.Companion.TOTAL_COUNT_EXTRA
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
 import org.junit.After
@@ -61,7 +64,7 @@ class DetailActivityTest {
 
     @Test
     fun activityTextView_HasText() {
-        val assertion: ViewAssertion = matches(withText("Number of results: 0"))
+        val assertion: ViewAssertion = matches(withText(TEST_NUMBER_OF_RESULTS_ZERO))
         onView(withId(R.id.totalCountTextView)).check(assertion)
     }
 
@@ -94,7 +97,7 @@ class DetailActivityTest {
             val totalCountTextView =
                 it.findViewById<TextView>(R.id.totalCountTextView)
             incrementButton.performClick()
-            assertEquals("Number of results: 1", totalCountTextView.text)
+            assertEquals(TEST_NUMBER_OF_RESULTS_PLUS_1, totalCountTextView.text)
         }
     }
 
@@ -106,7 +109,7 @@ class DetailActivityTest {
             val totalCountTextView =
                 it.findViewById<TextView>(R.id.totalCountTextView)
             decrementButton.performClick()
-            assertEquals("Number of results: -1", totalCountTextView.text)
+            assertEquals(TEST_NUMBER_OF_RESULTS_MINUS_1, totalCountTextView.text)
         }
     }
 
@@ -117,18 +120,18 @@ class DetailActivityTest {
         assertNotNull(bundle)
     }
 
-    @Test
-    fun activityCreateIntent_HasCount() {
-        val count = 42
-        val intent = DetailsActivity.getIntent(context, count)
-        val bundle = intent.extras
-        assertEquals(
-            count, bundle?.getInt(
-                DetailsActivity.TOTAL_COUNT_EXTRA,
-                0
-            )
-        )
-    }
+//    @Test
+//    fun activityCreateIntent_HasCount() {
+//
+//        val intent = DetailsActivity.getIntent(context, TEST_NUMBER)
+//        val bundle = intent.extras
+//        assertEquals(
+//            TEST_NUMBER, bundle?.getInt(
+//                DetailsActivity.TOTAL_COUNT_EXTRA,
+//                0
+//            )
+//        )
+//    }
 
     @After
     fun close() {
